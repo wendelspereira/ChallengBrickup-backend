@@ -12,8 +12,8 @@ const schedulingsRoutes = Router();
 
 const uploadImage = multer(uploadConfig.upload("./data/images"));
 const createSchedulingController = new CreateSchedulingController();
-const listSchedulingController = new ListSchedulingsController();
-const findSchedulingsByIdController = new FindSchedulingsByIdController();
+const listSchedulingsController = new ListSchedulingsController();
+const findSchedulingByIdController = new FindSchedulingsByIdController();
 const imageSchedulingsByIdController = new ImageSchedulingsByIdController();
 const updateSchedulingsController = new UpdateSchedulingsController();
 const deleteSchedulingsController = new deleteSchedulingController();
@@ -23,11 +23,11 @@ schedulingsRoutes.post(
     uploadImage.single("image"),
     createSchedulingController.handle
 );
-schedulingsRoutes.get("/", listSchedulingController.handle);
-schedulingsRoutes.get("/:id", findSchedulingsByIdController.handle);
+schedulingsRoutes.get("/", listSchedulingsController.handle);
+schedulingsRoutes.get("/:id", findSchedulingByIdController.handle);
 schedulingsRoutes.get("/image/:id", imageSchedulingsByIdController.handle);
-schedulingsRoutes.put("/:id", updateSchedulingsController.handle);
-schedulingsRoutes.delete("/:id", deleteSchedulingsController.handle);
+schedulingsRoutes.put("/update/:id", updateSchedulingsController.handle);
+schedulingsRoutes.delete("/delete/:id", deleteSchedulingsController.handle);
 
 export { schedulingsRoutes };
 

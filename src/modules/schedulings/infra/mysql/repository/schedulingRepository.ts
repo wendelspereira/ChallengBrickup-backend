@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 import { QueryError } from "mysql2";
 import { AppError } from "@shared/errors/AppError";
 import { IUpdateSchedulingDTO } from "@modules/schedulings/dtos/IUpdateSchedulingDTO";
+import { deleteFile } from "@util/file";
 
 class SchedulingRepository implements ISchedulingRepository {
     async list(): Promise<any> {
@@ -43,6 +44,7 @@ class SchedulingRepository implements ISchedulingRepository {
     }
 
     async put(id: string, data: IUpdateSchedulingDTO): Promise<void> {
+        console.log(data)
         const sqlQuery = `UPDATE schedulings SET ? WHERE id="${id}"`;
         const connection = await connect();
         try {
@@ -54,7 +56,6 @@ class SchedulingRepository implements ISchedulingRepository {
 
     async delete(id: string): Promise<void> {
         const sqlQuery = `DELETE FROM schedulings WHERE id="${id}"`;
-
         const connection = await connect();
         try {
             await connection.query(sqlQuery);

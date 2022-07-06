@@ -3,7 +3,7 @@ interface IUpdateSchedulingDTO {
     title?: string;
     slug?: string;
     description?: string;
-    status?: string;
+    status?: "pendding" | "progress" | "done";
     imageNames?: string[];
 }
 
